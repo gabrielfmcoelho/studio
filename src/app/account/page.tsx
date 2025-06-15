@@ -1,4 +1,5 @@
-"use client"; // This page will likely have forms and client-side interactions
+
+"use client"; 
 
 import AuthenticatedPageLayout from '@/components/layout/AuthenticatedPageLayout';
 import { Button } from '@/components/ui/button';
@@ -6,18 +7,18 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth, User } from '@/hooks/useAuth'; // Import User type from useAuth
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { useToast } from '@/hooks/use-toast';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Camera, Loader2 } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const accountSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email(),
+  name: z.string().min(2, "Nome deve ter pelo menos 2 caracteres"),
+  email: z.string().email("Endereço de e-mail inválido."),
   // Add other fields like currentPassword, newPassword, confirmPassword if implementing password change
 });
 type AccountFormValues = z.infer<typeof accountSchema>;
@@ -37,18 +38,30 @@ export default function AccountPage() {
 
   const profileForm = useForm<AccountFormValues>({
     resolver: zodResolver(accountSchema),
-    values: { // Use values instead of defaultValues to react to user changes
-      name: user?.name || "",
-      email: user?.email || "",
+    // Default values are set once. Use `reset` or `setValue` in useEffect if `user` data loads asynchronously
+    // and you want the form to update.
+    defaultValues: {
+      name: "",
+      email: "",
     },
     disabled: authLoading,
   });
 
+  // Populate form once user data is available
+  useEffect(() => {
+    if (user) {
+      profileForm.reset({
+        name: user.first_name || "", // API provides first_name
+        email: user.email || "",
+      });
+    }
+  }, [user, profileForm]);
+
+
   const notificationsForm = useForm<NotificationsFormValues>({
     resolver: zodResolver(notificationsSchema),
-    // Default values would be fetched from user preferences
     defaultValues: {
-        emailNotifications: true,
+        emailNotifications: true, // These could be fetched from user preferences API
         pushNotifications: false,
     },
   });
@@ -57,9 +70,17 @@ export default function AccountPage() {
   const onProfileSubmit = async (data: AccountFormValues) => {
     setIsProfileSaving(true);
     // Simulate API call
+    console.log("Profile update attempt with data:", data);
+    // In a real app:
+    // try {
+    //   await updateUserProfile(user.id, { first_name: data.name, email: data.email });
+    //   toast({ title: "Perfil Atualizado", description: "Suas informações de perfil foram salvas." });
+    // } catch (error) {
+    //   toast({ variant: "destructive", title: "Erro ao Atualizar", description: "Não foi possível salvar seu perfil." });
+    // }
     await new Promise(resolve => setTimeout(resolve, 1000));
-    console.log("Profile updated:", data);
-    toast({ title: "Profile Updated", description: "Your profile information has been saved." });
+    console.log("Profile updated (mock):", data);
+    toast({ title: "Perfil Atualizado", description: "Suas informações de perfil foram salvas (simulado)." });
     setIsProfileSaving(false);
   };
   
@@ -67,14 +88,14 @@ export default function AccountPage() {
     setIsNotificationSaving(true);
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
-    console.log("Notifications settings updated:", data);
-    toast({ title: "Notifications Updated", description: "Your notification preferences have been saved." });
+    console.log("Notifications settings updated (mock):", data);
+    toast({ title: "Preferências Atualizadas", description: "Suas preferências de notificação foram salvas (simulado)." });
     setIsNotificationSaving(false);
   };
 
   if (authLoading) {
     return (
-      <AuthenticatedPageLayout pageTitle="My Account">
+      <AuthenticatedPageLayout pageTitle="Minha Conta">
         <div className="flex justify-center items-center h-full">
           <Loader2 className="h-8 w-8 animate-spin text-primary" />
         </div>
@@ -82,38 +103,40 @@ export default function AccountPage() {
     );
   }
 
+  const displayName = user?.first_name || user?.email?.split('@')[0] || 'Usuário';
+  const avatarFallback = displayName.charAt(0).toUpperCase();
 
   return (
-    <AuthenticatedPageLayout pageTitle="My Account">
+    <AuthenticatedPageLayout pageTitle="Minha Conta">
       <div className="space-y-8 max-w-3xl mx-auto">
         {/* Profile Information Card */}
         <Card className="shadow-md bg-card/80 backdrop-blur-sm">
           <CardHeader>
-            <CardTitle>Profile Information</CardTitle>
-            <CardDescription>Update your personal details and email address.</CardDescription>
+            <CardTitle>Informações do Perfil</CardTitle>
+            <CardDescription>Atualize seus dados pessoais e endereço de e-mail.</CardDescription>
           </CardHeader>
           <form onSubmit={profileForm.handleSubmit(onProfileSubmit)}>
             <CardContent className="space-y-6">
               <div className="flex items-center space-x-6">
                 <div className="relative">
                     <Avatar className="h-24 w-24">
-                    <AvatarImage src={user?.name ? `https://avatar.vercel.sh/${user.name}.png` : `https://avatar.vercel.sh/default.png`} alt={user?.name} />
-                    <AvatarFallback>{user?.name?.charAt(0).toUpperCase() || 'U'}</AvatarFallback>
+                    <AvatarImage src={user?.first_name ? `https://avatar.vercel.sh/${user.first_name}.png` : `https://avatar.vercel.sh/${user?.email || 'default'}.png`} alt={displayName} />
+                    <AvatarFallback>{avatarFallback}</AvatarFallback>
                     </Avatar>
                     <Button type="button" variant="outline" size="icon" className="absolute bottom-0 right-0 rounded-full h-8 w-8 bg-background hover:bg-muted">
                         <Camera size={16} />
-                        <span className="sr-only">Change avatar</span>
+                        <span className="sr-only">Mudar avatar</span>
                     </Button>
                 </div>
                 <div className="flex-grow space-y-1">
-                    <Label htmlFor="name">Full Name</Label>
+                    <Label htmlFor="name">Nome Completo</Label>
                     <Input id="name" {...profileForm.register("name")} className="bg-input" />
                     {profileForm.formState.errors.name && <p className="text-sm text-destructive">{profileForm.formState.errors.name.message}</p>}
                 </div>
               </div>
               
               <div className="space-y-1">
-                <Label htmlFor="email">Email Address</Label>
+                <Label htmlFor="email">Endereço de E-mail</Label>
                 <Input id="email" type="email" {...profileForm.register("email")} className="bg-input" />
                 {profileForm.formState.errors.email && <p className="text-sm text-destructive">{profileForm.formState.errors.email.message}</p>}
               </div>
@@ -121,7 +144,7 @@ export default function AccountPage() {
             <CardFooter>
               <Button type="submit" disabled={isProfileSaving}>
                 {isProfileSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Save Profile
+                Salvar Perfil
               </Button>
             </CardFooter>
           </form>
@@ -130,16 +153,16 @@ export default function AccountPage() {
         {/* Notification Settings Card */}
         <Card className="shadow-md bg-card/80 backdrop-blur-sm">
           <CardHeader>
-            <CardTitle>Notification Settings</CardTitle>
-            <CardDescription>Manage how you receive notifications from Solude Platform.</CardDescription>
+            <CardTitle>Configurações de Notificação</CardTitle>
+            <CardDescription>Gerencie como você recebe notificações da Solude Platform.</CardDescription>
           </CardHeader>
           <form onSubmit={notificationsForm.handleSubmit(onNotificationsSubmit)}>
             <CardContent className="space-y-4">
                 <div className="flex items-center justify-between space-x-2 p-3 border rounded-md">
                     <Label htmlFor="emailNotifications" className="flex flex-col space-y-1">
-                    <span>Email Notifications</span>
+                    <span>Notificações por E-mail</span>
                     <span className="font-normal leading-snug text-muted-foreground">
-                        Receive updates and alerts via email.
+                        Receba atualizações e alertas por e-mail.
                     </span>
                     </Label>
                     <Switch
@@ -150,9 +173,9 @@ export default function AccountPage() {
                 </div>
                 <div className="flex items-center justify-between space-x-2 p-3 border rounded-md">
                     <Label htmlFor="pushNotifications" className="flex flex-col space-y-1">
-                    <span>Push Notifications</span>
+                    <span>Notificações Push</span>
                     <span className="font-normal leading-snug text-muted-foreground">
-                        Get real-time alerts on your device (if supported).
+                        Receba alertas em tempo real no seu dispositivo (se suportado).
                     </span>
                     </Label>
                      <Switch
@@ -165,7 +188,7 @@ export default function AccountPage() {
             <CardFooter>
                 <Button type="submit" disabled={isNotificationSaving}>
                     {isNotificationSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                    Save Preferences
+                    Salvar Preferências
                 </Button>
             </CardFooter>
           </form>
@@ -174,11 +197,11 @@ export default function AccountPage() {
         {/* Security Settings Card Placeholder */}
         <Card className="shadow-md bg-card/80 backdrop-blur-sm">
           <CardHeader>
-            <CardTitle>Security Settings</CardTitle>
-            <CardDescription>Manage your password and two-factor authentication.</CardDescription>
+            <CardTitle>Configurações de Segurança</CardTitle>
+            <CardDescription>Gerencie sua senha e autenticação de dois fatores.</CardDescription>
           </CardHeader>
           <CardContent>
-            <Button variant="outline">Change Password</Button>
+            <Button variant="outline">Mudar Senha</Button>
             {/* Placeholder for 2FA setup */}
           </CardContent>
         </Card>

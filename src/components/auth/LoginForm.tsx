@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -10,7 +11,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from '@/hooks/useAuth';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertCircle, Loader2 } from "lucide-react";
+import { AlertCircle, Loader2, UserSquare2 } from "lucide-react";
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Endereço de e-mail inválido." }),
@@ -20,9 +21,10 @@ const loginSchema = z.object({
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 export default function LoginForm() {
-  const { login } = useAuth();
+  const { login, guestLogin } = useAuth(); // Added guestLogin
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const [isGuestLoading, setIsGuestLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const form = useForm<LoginFormValues>({
@@ -56,8 +58,31 @@ export default function LoginForm() {
     }
   };
 
+  const handleGuestLogin = async () => {
+    setIsGuestLoading(true);
+    setError(null);
+    try {
+      await guestLogin();
+      toast({
+        title: "Login como Convidado",
+        description: "Bem-vindo!",
+      });
+    } catch (err: any) {
+      const errorMessage = err.message || "Ocorreu um erro inesperado ao tentar login como convidado.";
+      setError(errorMessage);
+      toast({
+        variant: "destructive",
+        title: "Falha no Login como Convidado",
+        description: errorMessage,
+      });
+    } finally {
+      setIsGuestLoading(false);
+    }
+  };
+
+
   return (
-    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 w-full max-w-sm">
+    <div className="w-full max-w-sm space-y-6">
       {error && (
         <Alert variant="destructive">
           <AlertCircle className="h-4 w-4" />
@@ -65,43 +90,59 @@ export default function LoginForm() {
           <AlertDescription>{error}</AlertDescription>
         </Alert>
       )}
-      <div className="space-y-2">
-        <Label htmlFor="email">E-mail</Label>
-        <Input
-          id="email"
-          type="email"
-          placeholder="m@example.com"
-          {...form.register("email")}
-          disabled={isLoading}
-          className="bg-input"
-        />
-        {form.formState.errors.email && (
-          <p className="text-sm text-destructive">{form.formState.errors.email.message}</p>
-        )}
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <div className="space-y-2">
+          <Label htmlFor="email">E-mail</Label>
+          <Input
+            id="email"
+            type="email"
+            placeholder="m@example.com"
+            {...form.register("email")}
+            disabled={isLoading || isGuestLoading}
+            className="bg-input"
+          />
+          {form.formState.errors.email && (
+            <p className="text-sm text-destructive">{form.formState.errors.email.message}</p>
+          )}
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="password">Senha</Label>
+          <Input
+            id="password"
+            type="password"
+            placeholder="••••••••"
+            {...form.register("password")}
+            disabled={isLoading || isGuestLoading}
+            className="bg-input"
+          />
+          {form.formState.errors.password && (
+            <p className="text-sm text-destructive">{form.formState.errors.password.message}</p>
+          )}
+        </div>
+        <Button type="submit" className="w-full" disabled={isLoading || isGuestLoading}>
+          {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+          Entrar
+        </Button>
+      </form>
+      <div className="relative">
+        <div className="absolute inset-0 flex items-center">
+          <span className="w-full border-t" />
+        </div>
+        <div className="relative flex justify-center text-xs uppercase">
+          <span className="bg-card px-2 text-muted-foreground">
+            Ou continue como
+          </span>
+        </div>
       </div>
-      <div className="space-y-2">
-        <Label htmlFor="password">Senha</Label>
-        <Input
-          id="password"
-          type="password"
-          placeholder="••••••••"
-          {...form.register("password")}
-          disabled={isLoading}
-          className="bg-input"
-        />
-        {form.formState.errors.password && (
-          <p className="text-sm text-destructive">{form.formState.errors.password.message}</p>
-        )}
-      </div>
-      <Button type="submit" className="w-full" disabled={isLoading}>
-        {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-        Entrar
+      <Button variant="outline" className="w-full" onClick={handleGuestLogin} disabled={isLoading || isGuestLoading}>
+        {isGuestLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <UserSquare2 className="mr-2 h-4 w-4" /> }
+        Convidado
       </Button>
-      <div className="text-center text-sm text-muted-foreground">
-        <p>Contas de demonstração:</p>
-        <p>user@solude.tech / (qualquer senha)</p>
-        <p>admin@solude.tech / (qualquer senha)</p>
+       <div className="text-center text-sm text-muted-foreground">
+          <p>Contas de demonstração (API):</p>
+          <p>user@solude.tech / admin</p>
+          <p>admin@solude.tech / admin</p>
       </div>
-    </form>
+    </div>
   );
 }

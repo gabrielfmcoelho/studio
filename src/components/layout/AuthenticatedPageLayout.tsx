@@ -1,14 +1,15 @@
+
 "use client";
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation'; // useRouter removed as handleLogout is in useAuth
 import * as LucideIcons from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Logo from '@/components/icons/Logo';
-import { NAV_LINKS, APP_NAME } from '@/lib/constants';
+import { NAV_LINKS } from '@/lib/constants';
 import { cn } from '@/lib/utils';
-import { logout as apiLogout, getCurrentUser, User } from '@/lib/authService';
+import { useAuth, User } from '@/hooks/useAuth'; // Import User from useAuth
 import {
   SidebarProvider,
   Sidebar,
@@ -20,7 +21,7 @@ import {
   SidebarMenuButton,
   SidebarTrigger,
   SidebarInset,
-} from '@/components/ui/sidebar'; // Ensure this path is correct
+} from '@/components/ui/sidebar'; 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -31,10 +32,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-// Dynamically get Lucide Icons
+
 const getIcon = (iconName: string): React.FC<LucideIcons.LucideProps> | null => {
   const IconComponent = (LucideIcons as any)[iconName];
-  return IconComponent || LucideIcons.HelpCircle; // Fallback icon
+  return IconComponent || LucideIcons.HelpCircle; 
 };
 
 interface AuthenticatedPageLayoutProps {
@@ -44,18 +45,16 @@ interface AuthenticatedPageLayoutProps {
 
 export default function AuthenticatedPageLayout({ children, pageTitle }: AuthenticatedPageLayoutProps) {
   const pathname = usePathname();
-  const router = useRouter();
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const { user, logout, isLoading: authIsLoading } = useAuth(); // Get user and logout from useAuth
 
-  useEffect(() => {
-    setCurrentUser(getCurrentUser());
-  }, []);
+  const adminNavLink = NAV_LINKS.authenticated.find(link => link.href === "/admin");
 
-  const handleLogout = () => {
-    apiLogout();
-    router.push('/login');
-    router.refresh();
-  };
+  const navLinksToDisplay = NAV_LINKS.authenticated.filter(link => {
+    if (link.href === "/admin") {
+      return user?.role_id === 1; // Assuming role_id 1 is admin
+    }
+    return true;
+  });
   
   const NavLink = ({ href, label, iconName }: { href: string; label: string; iconName?: string }) => {
     const Icon = iconName ? getIcon(iconName) : null;
@@ -77,6 +76,10 @@ export default function AuthenticatedPageLayout({ children, pageTitle }: Authent
     );
   };
 
+  const displayName = user?.first_name || user?.email?.split('@')[0] || 'Usuário';
+  const avatarFallback = displayName.charAt(0).toUpperCase();
+
+
   return (
     <SidebarProvider defaultOpen>
       <div className="flex min-h-screen bg-background">
@@ -89,19 +92,19 @@ export default function AuthenticatedPageLayout({ children, pageTitle }: Authent
           </SidebarHeader>
           <SidebarContent className="p-2">
             <SidebarMenu>
-              {NAV_LINKS.authenticated.map((link) => (
+              {navLinksToDisplay.map((link) => (
                 <NavLink key={link.href} href={link.href} label={link.label} iconName={link.icon as string} />
               ))}
             </SidebarMenu>
           </SidebarContent>
           <SidebarFooter className="p-4 mt-auto border-t border-sidebar-border">
              <SidebarMenuButton
-                onClick={handleLogout}
+                onClick={logout} // Use logout from useAuth
                 className="w-full hover:bg-destructive/20 hover:text-destructive group-data-[collapsible=icon]:justify-center"
-                tooltip="Logout"
+                tooltip="Sair"
               >
                 <LucideIcons.LogOut className="h-5 w-5" />
-                <span className="group-data-[collapsible=icon]:hidden">Logout</span>
+                <span className="group-data-[collapsible=icon]:hidden">Sair</span>
             </SidebarMenuButton>
           </SidebarFooter>
         </Sidebar>
@@ -116,27 +119,27 @@ export default function AuthenticatedPageLayout({ children, pageTitle }: Authent
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="relative h-10 w-10 rounded-full">
                   <Avatar className="h-9 w-9">
-                    <AvatarImage src={currentUser?.name ? `https://avatar.vercel.sh/${currentUser.name}.png` : `https://avatar.vercel.sh/default.png`} alt={currentUser?.name || 'User'} />
-                    <AvatarFallback>{currentUser?.name?.charAt(0) || 'U'}</AvatarFallback>
+                    <AvatarImage src={user?.first_name ? `https://avatar.vercel.sh/${user.first_name}.png` : `https://avatar.vercel.sh/${user?.email || 'default'}.png`} alt={displayName} />
+                    <AvatarFallback>{avatarFallback}</AvatarFallback>
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56" align="end" forceMount>
                 <DropdownMenuLabel className="font-normal">
                   <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium leading-none">{currentUser?.name || "User"}</p>
+                    <p className="text-sm font-medium leading-none">{displayName}</p>
                     <p className="text-xs leading-none text-muted-foreground">
-                      {currentUser?.email || "No email"}
+                      {user?.email || "Nenhum e-mail"}
                     </p>
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
-                  <Link href="/account"><LucideIcons.User className="mr-2 h-4 w-4" /> Account</Link>
+                  <Link href="/account"><LucideIcons.User className="mr-2 h-4 w-4" /> Conta</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={handleLogout}>
+                <DropdownMenuItem onClick={logout}>
                   <LucideIcons.LogOut className="mr-2 h-4 w-4" />
-                  Logout
+                  Sair
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
