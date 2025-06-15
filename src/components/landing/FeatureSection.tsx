@@ -4,23 +4,23 @@ export default function FeatureSection() {
   const features = [
     {
       iconName: "BarChartBig" as const,
-      title: "Powerful Analytics",
-      description: "Gain deep insights with our advanced analytics tools and customizable dashboards."
+      title: "Análises Poderosas",
+      description: "Obtenha insights profundos com nossas ferramentas avançadas de análise e dashboards personalizáveis."
     },
     {
       iconName: "Users" as const,
-      title: "Seamless Collaboration",
-      description: "Work together efficiently with integrated communication and project management features."
+      title: "Colaboração Contínua",
+      description: "Trabalhe em conjunto de forma eficiente com recursos integrados de comunicação e gerenciamento de projetos."
     },
     {
       iconName: "ShieldCheck" as const,
-      title: "Enterprise-Grade Security",
-      description: "Protect your data with robust security measures and compliance certifications."
+      title: "Segurança de Nível Empresarial",
+      description: "Proteja seus dados com medidas de segurança robustas e certificações de conformidade."
     },
     {
       iconName: "Settings2" as const,
-      title: "Highly Customizable",
-      description: "Tailor the platform to your specific needs with flexible configurations and integrations."
+      title: "Altamente Personalizável",
+      description: "Adapte a plataforma às suas necessidades específicas com configurações e integrações flexíveis."
     }
   ];
 
@@ -29,10 +29,10 @@ export default function FeatureSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
-            Everything You Need to Succeed
+            Tudo o que Você Precisa para o Sucesso
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Solude Platform offers a comprehensive suite of tools designed to elevate your business performance and drive innovation.
+            A Solude Platform oferece um conjunto abrangente de ferramentas projetadas para elevar o desempenho do seu negócio e impulsionar a inovação.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

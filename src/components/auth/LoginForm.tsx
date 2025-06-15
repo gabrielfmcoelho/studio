@@ -13,8 +13,8 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle, Loader2 } from "lucide-react";
 
 const loginSchema = z.object({
-  email: z.string().email({ message: "Invalid email address." }),
-  password: z.string().min(1, { message: "Password is required." }),
+  email: z.string().email({ message: "Endereço de e-mail inválido." }),
+  password: z.string().min(1, { message: "A senha é obrigatória." }),
 });
 
 type LoginFormValues = z.infer<typeof loginSchema>;
@@ -39,16 +39,16 @@ export default function LoginForm() {
     try {
       await login(data.email, data.password);
       toast({
-        title: "Login Successful",
-        description: "Welcome back!",
+        title: "Login Bem-sucedido",
+        description: "Bem-vindo de volta!",
       });
       // Redirect is handled by useAuth hook
     } catch (err: any) {
-      const errorMessage = err.message || "An unexpected error occurred.";
+      const errorMessage = err.message || "Ocorreu um erro inesperado.";
       setError(errorMessage);
       toast({
         variant: "destructive",
-        title: "Login Failed",
+        title: "Falha no Login",
         description: errorMessage,
       });
     } finally {
@@ -61,12 +61,12 @@ export default function LoginForm() {
       {error && (
         <Alert variant="destructive">
           <AlertCircle className="h-4 w-4" />
-          <AlertTitle>Error</AlertTitle>
+          <AlertTitle>Erro</AlertTitle>
           <AlertDescription>{error}</AlertDescription>
         </Alert>
       )}
       <div className="space-y-2">
-        <Label htmlFor="email">Email</Label>
+        <Label htmlFor="email">E-mail</Label>
         <Input
           id="email"
           type="email"
@@ -80,7 +80,7 @@ export default function LoginForm() {
         )}
       </div>
       <div className="space-y-2">
-        <Label htmlFor="password">Password</Label>
+        <Label htmlFor="password">Senha</Label>
         <Input
           id="password"
           type="password"
@@ -95,12 +95,12 @@ export default function LoginForm() {
       </div>
       <Button type="submit" className="w-full" disabled={isLoading}>
         {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-        Login
+        Entrar
       </Button>
       <div className="text-center text-sm text-muted-foreground">
-        <p>Demo accounts:</p>
-        <p>user@solude.tech / (any password)</p>
-        <p>admin@solude.tech / (any password)</p>
+        <p>Contas de demonstração:</p>
+        <p>user@solude.tech / (qualquer senha)</p>
+        <p>admin@solude.tech / (qualquer senha)</p>
       </div>
     </form>
   );

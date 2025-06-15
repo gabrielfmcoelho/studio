@@ -31,16 +31,18 @@ export default function TeamPage() {
           </div>
         </section>
 
+        <PartnersCarousel sectionBgClass="bg-background"/>
+
         {/* Team Members Section */}
         <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12 md:mb-16 animate-fade-in">
               <Users className="mx-auto h-16 w-16 text-primary mb-4" />
               <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground">
-                Meet Our <span className="text-primary">Expert Team</span>
+                Conheça Nossa <span className="text-primary">Equipe de Especialistas</span>
               </h1>
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-                The driving force behind Solude's innovation and success. We are passionate professionals dedicated to delivering exceptional solutions.
+                A força motriz por trás da inovação e do sucesso da Solude. Somos profissionais apaixonados e dedicados a entregar soluções excepcionais.
               </p>
             </div>
 
@@ -61,7 +63,6 @@ export default function TeamPage() {
             </div>
           </div>
         </section>
-        <PartnersCarousel sectionBgClass="bg-section-alternate-background"/>
       </main>
       <Footer />
     </div>

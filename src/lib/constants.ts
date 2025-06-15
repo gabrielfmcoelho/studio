@@ -3,60 +3,60 @@ export const APP_NAME = "Solude Platform";
 
 export const NAV_LINKS = {
   public: [
-    { href: "/", label: "Home" },
-    { href: "/solutions", label: "Solutions" },
-    { href: "/team", label: "Team" },
+    { href: "/", label: "Início" },
+    { href: "/solutions", label: "Soluções" },
+    { href: "/team", label: "Equipe" },
   ],
   authenticated: [
-    { href: "/hub", label: "Solutions Hub", icon: "LayoutDashboard" },
-    { href: "/account", label: "My Account", icon: "UserCircle" },
-    { href: "/admin", label: "Admin Panel", icon: "ShieldCheck" },
+    { href: "/hub", label: "Hub de Soluções", icon: "LayoutDashboard" },
+    { href: "/account", label: "Minha Conta", icon: "UserCircle" },
+    { href: "/admin", label: "Painel Admin", icon: "ShieldCheck" },
   ],
 };
 
 export const MOCK_SOLUTIONS = [
-  { id: "solution-1", name: "Alpha Analytics", description: "Advanced data processing and visualization.", url: "https://example.com/alpha-analytics-app", icon: "BarChart3", category: "Analytics" },
-  { id: "solution-2", name: "Beta CRM", description: "Customer relationship management suite.", url: "https://example.com/beta-crm-app", icon: "Users", category: "CRM" },
-  { id: "solution-3", name: "Gamma Project Manager", description: "Collaborative project tracking tool.", url: "https://example.com/gamma-pm-app", icon: "KanbanSquare", category: "Productivity" },
-  { id: "solution-4", name: "Delta E-commerce", description: "Full-featured online store platform.", url: "https://example.com/delta-ecom-app", icon: "ShoppingCart", category: "E-commerce" },
+  { id: "solution-1", name: "Alpha Analytics", description: "Processamento e visualização avançada de dados.", url: "https://example.com/alpha-analytics-app", icon: "BarChart3", category: "Analytics" },
+  { id: "solution-2", name: "Beta CRM", description: "Suite de gerenciamento de relacionamento com o cliente.", url: "https://example.com/beta-crm-app", icon: "Users", category: "CRM" },
+  { id: "solution-3", name: "Gamma Project Manager", description: "Ferramenta colaborativa de acompanhamento de projetos.", url: "https://example.com/gamma-pm-app", icon: "KanbanSquare", category: "Produtividade" },
+  { id: "solution-4", name: "Delta E-commerce", description: "Plataforma de loja online completa.", url: "https://example.com/delta-ecom-app", icon: "ShoppingCart", category: "E-commerce" },
 ];
 
 export const MOCK_TEAM_MEMBERS = [
   { 
     id: "1", 
-    name: "Dr. Elara Vance", 
-    role: "Chief Executive Officer", 
-    expertise: "Strategic Leadership, Innovation", 
+    name: "Dra. Elara Vance", 
+    role: "Diretora Executiva (CEO)", 
+    expertise: "Liderança Estratégica, Inovação", 
     imageUrl: "https://placehold.co/400x400.png", 
     dataAiHint: "woman portrait",
-    description: "Dr. Vance is a visionary leader with 20+ years in tech, driving innovation and strategic growth for global enterprises."
+    description: "Dra. Vance é uma líder visionária com mais de 20 anos em tecnologia, impulsionando inovação e crescimento estratégico para empresas globais."
   },
   { 
     id: "2", 
     name: "Marcus Chen", 
-    role: "Chief Technology Officer", 
-    expertise: "Software Architecture, AI", 
+    role: "Diretor de Tecnologia (CTO)", 
+    expertise: "Arquitetura de Software, IA", 
     imageUrl: "https://placehold.co/400x400.png", 
     dataAiHint: "man portrait",
-    description: "Marcus architect's cutting-edge solutions, leveraging AI and scalable systems to solve complex business challenges."
+    description: "Marcus projeta soluções de ponta, utilizando IA e sistemas escaláveis para resolver desafios complexos de negócios."
   },
   { 
     id: "3", 
     name: "Sofia Reyes", 
-    role: "VP of Solutions", 
-    expertise: "Product Management, UX Design", 
+    role: "VP de Soluções", 
+    expertise: "Gerenciamento de Produto, Design UX", 
     imageUrl: "https://placehold.co/400x400.png", 
     dataAiHint: "woman professional",
-    description: "Sofia translates client needs into impactful products, focusing on user-centric design and seamless experiences."
+    description: "Sofia traduz as necessidades dos clientes em produtos impactantes, focando em design centrado no usuário e experiências fluidas."
   },
   { 
     id: "4", 
     name: "James Miller", 
-    role: "Lead Engineer", 
-    expertise: "Full-Stack Development", 
+    role: "Engenheiro Líder", 
+    expertise: "Desenvolvimento Full-Stack", 
     imageUrl: "https://placehold.co/400x400.png", 
     dataAiHint: "man tech",
-    description: "James leads our development team, ensuring robust, high-quality code and efficient project delivery."
+    description: "James lidera nossa equipe de desenvolvimento, garantindo código robusto, de alta qualidade e entrega eficiente de projetos."
   },
 ];
 

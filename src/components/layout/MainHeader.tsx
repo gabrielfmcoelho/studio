@@ -67,7 +67,7 @@ export default function MainHeader() {
           {isAuthenticated ? (
             <>
               <Button variant="outline" asChild>
-                <Link href="/hub">Go to Hub</Link>
+                <Link href="/hub">Ir para o Hub</Link>
               </Button>
               <Button variant="ghost" onClick={handleLogout} aria-label="Logout">
                 <LogOut className="h-5 w-5" />
@@ -85,7 +85,7 @@ export default function MainHeader() {
         <div className="md:hidden">
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" aria-label="Open menu">
+              <Button variant="ghost" size="icon" aria-label="Abrir menu">
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
@@ -95,7 +95,7 @@ export default function MainHeader() {
                   <Logo />
                 </Link>
                 <SheetClose asChild>
-                  <Button variant="ghost" size="icon" aria-label="Close menu">
+                  <Button variant="ghost" size="icon" aria-label="Fechar menu">
                     <X className="h-6 w-6" />
                   </Button>
                 </SheetClose>
@@ -107,11 +107,11 @@ export default function MainHeader() {
                 <hr className="my-3 border-border" />
                 {isAuthenticated ? (
                   <>
-                    <MobileNavLink href="/hub">Solutions Hub</MobileNavLink>
-                    <MobileNavLink href="/account">My Account</MobileNavLink>
+                    <MobileNavLink href="/hub">Hub de Soluções</MobileNavLink>
+                    <MobileNavLink href="/account">Minha Conta</MobileNavLink>
                     {/* Add Admin link if user is admin based on role from getCurrentUser() */}
                     <Button variant="ghost" onClick={() => { handleLogout(); setIsMobileMenuOpen(false);}} className="w-full justify-start px-3 py-2 text-base font-medium text-foreground hover:bg-muted hover:text-accent-foreground">
-                      <LogOut className="mr-2 h-5 w-5" /> Logout
+                      <LogOut className="mr-2 h-5 w-5" /> Sair
                     </Button>
                   </>
                 ) : (

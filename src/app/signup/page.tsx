@@ -8,7 +8,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { UserPlus } from 'lucide-react';
 
-// This is a placeholder page. In a real app, you'd have a form and logic similar to LoginForm.
 export default function SignupPage() {
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-background via-primary/5 to-background">
@@ -19,37 +18,37 @@ export default function SignupPage() {
              <Link href="/" className="inline-block">
               <Logo />
             </Link>
-            <CardTitle className="text-2xl sm:text-3xl font-bold">Create an Account</CardTitle>
+            <CardTitle className="text-2xl sm:text-3xl font-bold">Crie uma Conta</CardTitle>
             <CardDescription className="text-muted-foreground">
-              Join Solude Platform and start transforming your business today.
+              Junte-se à Solude Platform e comece a transformar seu negócio hoje mesmo.
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form className="space-y-6">
                 <div className="space-y-2">
-                    <Label htmlFor="fullName">Full Name</Label>
-                    <Input id="fullName" placeholder="John Doe" className="bg-input" />
+                    <Label htmlFor="fullName">Nome Completo</Label>
+                    <Input id="fullName" placeholder="João da Silva" className="bg-input" />
                 </div>
                 <div className="space-y-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input id="email" type="email" placeholder="m@example.com" className="bg-input" />
+                    <Label htmlFor="email">E-mail</Label>
+                    <Input id="email" type="email" placeholder="joao@example.com" className="bg-input" />
                 </div>
                 <div className="space-y-2">
-                    <Label htmlFor="password">Password</Label>
+                    <Label htmlFor="password">Senha</Label>
                     <Input id="password" type="password" placeholder="••••••••" className="bg-input" />
                 </div>
                 <div className="space-y-2">
-                    <Label htmlFor="confirmPassword">Confirm Password</Label>
+                    <Label htmlFor="confirmPassword">Confirme a Senha</Label>
                     <Input id="confirmPassword" type="password" placeholder="••••••••" className="bg-input" />
                 </div>
                 <Button type="submit" className="w-full">
-                    <UserPlus className="mr-2 h-4 w-4" /> Sign Up
+                    <UserPlus className="mr-2 h-4 w-4" /> Cadastrar
                 </Button>
             </form>
             <p className="mt-6 text-center text-sm text-muted-foreground">
-              Already have an account?{' '}
+              Já tem uma conta?{' '}
               <Link href="/login" className="font-medium text-primary hover:underline">
-                Log in
+                Faça login
               </Link>
             </p>
           </CardContent>

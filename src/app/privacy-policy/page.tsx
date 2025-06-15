@@ -12,7 +12,7 @@ export default function PrivacyPolicyPage() {
   const [lastUpdatedDate, setLastUpdatedDate] = useState<string | null>(null);
 
   useEffect(() => {
-    setLastUpdatedDate(new Date().toLocaleDateString('en-US', {
+    setLastUpdatedDate(new Date().toLocaleDateString('pt-BR', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
@@ -28,58 +28,59 @@ export default function PrivacyPolicyPage() {
             <div className="text-center mb-12">
               <ScrollText className="mx-auto h-16 w-16 text-primary mb-4" />
               <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground">
-                Privacy Policy
+                Política de Privacidade
               </h1>
-              <p className="mt-2 text-sm text-muted-foreground">Last Updated: {lastUpdatedDate !== null ? lastUpdatedDate : 'Loading...'}</p>
+              <p className="mt-2 text-sm text-muted-foreground">Última Atualização: {lastUpdatedDate !== null ? lastUpdatedDate : 'Carregando...'}</p>
             </div>
+
+            <PartnersCarousel sectionBgClass="bg-section-alternate-background" />
             
-            <article className="prose lg:prose-xl mx-auto text-foreground prose-headings:text-foreground prose-a:text-primary hover:prose-a:text-primary/80 prose-strong:text-foreground">
-              <p>Welcome to Solude Platform's Privacy Policy. This policy describes how Solude ("we", "us", or "our") collects, uses, and shares information about you through our online interfaces (e.g., websites and mobile applications) owned and controlled by us, including www.solude.tech (collectively referred to herein as the "Site").</p>
+            <article className="prose lg:prose-xl mx-auto text-foreground prose-headings:text-foreground prose-a:text-primary hover:prose-a:text-primary/80 prose-strong:text-foreground mt-12 md:mt-16">
+              <p>Bem-vindo à Política de Privacidade da Solude Platform. Esta política descreve como a Solude ("nós", "nos" ou "nosso") coleta, usa e compartilha informações sobre você através de nossas interfaces online (por exemplo, websites e aplicativos móveis) de nossa propriedade e controle, incluindo www.solude.tech (coletivamente referidos aqui como o "Site").</p>
 
-              <h2>1. Information We Collect</h2>
-              <p>We may collect information about you directly from you and from third parties, as well as automatically through your use of our Site or services.</p>
+              <h2>1. Informações que Coletamos</h2>
+              <p>Podemos coletar informações sobre você diretamente de você e de terceiros, bem como automaticamente através do seu uso de nosso Site ou serviços.</p>
               <ul>
-                <li><strong>Information You Provide to Us:</strong> This includes your name, email address, phone number, company information, and any other information you choose to provide when you register for an account, use our services, or communicate with us.</li>
-                <li><strong>Information We Collect Automatically:</strong> When you visit our Site, we may automatically log information about you and your computer or mobile device, such as your computer or mobile device operating system name and version, manufacturer and model, browser type, browser language, screen resolution, the website you visited before browsing to our Site, pages you viewed, how long you spent on a page, access times, and information about your use of and actions on our Site.</li>
+                <li><strong>Informações que Você nos Fornece:</strong> Isso inclui seu nome, endereço de e-mail, número de telefone, informações da empresa e qualquer outra informação que você escolha fornecer ao se registrar para uma conta, usar nossos serviços ou se comunicar conosco.</li>
+                <li><strong>Informações que Coletamos Automaticamente:</strong> Quando você visita nosso Site, podemos registrar automaticamente informações sobre você e seu computador ou dispositivo móvel, como o nome e a versão do sistema operacional do seu computador ou dispositivo móvel, fabricante e modelo, tipo de navegador, idioma do navegador, resolução da tela, o website que você visitou antes de navegar para o nosso Site, páginas que você visualizou, quanto tempo você passou em uma página, horários de acesso e informações sobre seu uso e ações em nosso Site.</li>
               </ul>
 
-              <h2>2. How We Use Your Information</h2>
-              <p>We use your information, including your personal data, for the following purposes:</p>
+              <h2>2. Como Usamos Suas Informações</h2>
+              <p>Usamos suas informações, incluindo seus dados pessoais, para os seguintes propósitos:</p>
               <ul>
-                <li>To provide and maintain our Service, including to monitor the usage of our Service.</li>
-                <li>To manage Your Account: to manage Your registration as a user of the Service.</li>
-                <li>For the performance of a contract: the development, compliance and undertaking of the purchase contract for the products, items or services You have purchased or of any other contract with Us through the Service.</li>
-                <li>To contact You: To contact You by email, telephone calls, SMS, or other equivalent forms of electronic communication.</li>
-                <li>To provide You with news, special offers and general information about other goods, services and events which we offer.</li>
+                <li>Para fornecer e manter nosso Serviço, incluindo monitorar o uso de nosso Serviço.</li>
+                <li>Para gerenciar Sua Conta: para gerenciar Seu registro como usuário do Serviço.</li>
+                <li>Para a execução de um contrato: o desenvolvimento, cumprimento e realização do contrato de compra dos produtos, itens ou serviços que Você adquiriu ou de qualquer outro contrato conosco através do Serviço.</li>
+                <li>Para contatá-lo: Para contatá-lo por e-mail, chamadas telefônicas, SMS ou outras formas equivalentes de comunicação eletrônica.</li>
+                <li>Para fornecer a Você notícias, ofertas especiais e informações gerais sobre outros bens, serviços e eventos que oferecemos.</li>
               </ul>
 
-              <h2>3. How We Share Your Information</h2>
-              <p>We do not sell your personal data. We may share your personal data in the following situations:</p>
+              <h2>3. Como Compartilhamos Suas Informações</h2>
+              <p>Não vendemos seus dados pessoais. Podemos compartilhar seus dados pessoais nas seguintes situações:</p>
               <ul>
-                <li><strong>With Service Providers:</strong> We may share Your personal information with Service Providers to monitor and analyze the use of our Service, to contact You.</li>
-                <li><strong>For Business transfers:</strong> We may share or transfer Your personal information in connection with, or during negotiations of, any merger, sale of Company assets, financing, or acquisition of all or a portion of Our business to another company.</li>
-                <li><strong>With Your consent:</strong> We may disclose Your personal information for any other purpose with Your consent.</li>
+                <li><strong>Com Prestadores de Serviços:</strong> Podemos compartilhar Suas informações pessoais com Prestadores de Serviços para monitorar e analisar o uso de nosso Serviço, para contatá-lo.</li>
+                <li><strong>Para transferências de negócios:</strong> Podemos compartilhar ou transferir Suas informações pessoais em conexão com, ou durante negociações de, qualquer fusão, venda de ativos da Empresa, financiamento ou aquisição de toda ou uma parte de Nossos negócios para outra empresa.</li>
+                <li><strong>Com o Seu consentimento:</strong> Podemos divulgar Suas informações pessoais para qualquer outro propósito com o Seu consentimento.</li>
               </ul>
 
-              <h2>4. Your Data Protection Rights</h2>
-              <p>Depending on your location, you may have certain rights regarding your personal information, including the right to access, correct, update, or request deletion of your personal information. You may also have the right to object to processing of your personal information, ask us to restrict processing of your personal information, or request portability of your personal information.</p>
+              <h2>4. Seus Direitos de Proteção de Dados</h2>
+              <p>Dependendo da sua localização, você pode ter certos direitos em relação às suas informações pessoais, incluindo o direito de acessar, corrigir, atualizar ou solicitar a exclusão de suas informações pessoais. Você também pode ter o direito de se opor ao processamento de suas informações pessoais, pedir-nos para restringir o processamento de suas informações pessoais ou solicitar a portabilidade de suas informações pessoais.</p>
 
-              <h2>5. Security of Your Information</h2>
-              <p>We take reasonable measures, including administrative, technical, and physical safeguards, to protect your information from loss, theft, misuse, and unauthorized access, disclosure, alteration, and destruction.</p>
+              <h2>5. Segurança de Suas Informações</h2>
+              <p>Tomamos medidas razoáveis, incluindo salvaguardas administrativas, técnicas e físicas, para proteger suas informações contra perda, roubo, uso indevido e acesso não autorizado, divulgação, alteração e destruição.</p>
               
-              <h2>6. Changes to This Privacy Policy</h2>
-              <p>We may update Our Privacy Policy from time to time. We will notify You of any changes by posting празднование (prazdnovaniye - celebration) the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes.</p>
+              <h2>6. Alterações a Esta Política de Privacidade</h2>
+              <p>Podemos atualizar Nossa Política de Privacidade de tempos em tempos. Notificaremos Você sobre quaisquer alterações publicando a nova Política de Privacidade nesta página. Aconselhamos que você revise esta Política de Privacidade periodicamente para quaisquer alterações.</p>
 
-              <h2>7. Contact Us</h2>
-              <p>If you have any questions about this Privacy Policy, You can contact us:</p>
+              <h2>7. Contate-Nos</h2>
+              <p>Se você tiver alguma dúvida sobre esta Política de Privacidade, Você pode nos contatar:</p>
               <ul>
-                <li>By email: privacy@solude.tech</li>
-                <li>By visiting this page on our website: <Link href="/contact">www.solude.tech/contact</Link></li>
+                <li>Por e-mail: privacidade@solude.tech</li>
+                <li>Visitando esta página em nosso website: <Link href="/contact">www.solude.tech/contato</Link></li>
               </ul>
             </article>
           </div>
         </section>
-        <PartnersCarousel sectionBgClass="bg-section-alternate-background" />
       </main>
       <Footer />
     </div>

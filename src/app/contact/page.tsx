@@ -18,44 +18,46 @@ export default function ContactPage() {
             <div className="text-center mb-12 md:mb-16">
               <Mail className="mx-auto h-16 w-16 text-primary mb-4" />
               <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground">
-                Get In <span className="text-primary">Touch</span>
+                Entre em <span className="text-primary">Contato</span>
               </h1>
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-                We&apos;d love to hear from you! Whether you have a question about features, trials, pricing, or anything else, our team is ready to answer all your questions.
+                Adoraríamos ouvir de você! Se você tem alguma dúvida sobre funcionalidades, testes, preços ou qualquer outra coisa, nossa equipe está pronta para responder a todas as suas perguntas.
               </p>
             </div>
+            
+            <PartnersCarousel sectionBgClass="bg-section-alternate-background" />
 
-            <div className="grid md:grid-cols-2 gap-12 items-start">
+            <div className="grid md:grid-cols-2 gap-12 items-start mt-12 md:mt-16">
               <Card className="shadow-xl bg-card">
                 <CardHeader>
-                  <CardTitle className="text-2xl">Send us a message</CardTitle>
-                  <CardDescription>Fill out the form and we&apos;ll get back to you shortly.</CardDescription>
+                  <CardTitle className="text-2xl">Envie-nos uma mensagem</CardTitle>
+                  <CardDescription>Preencha o formulário e retornaremos em breve.</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <form className="space-y-6">
                     <div className="grid sm:grid-cols-2 gap-6">
                       <div className="space-y-1.5">
-                        <Label htmlFor="firstName">First Name</Label>
-                        <Input id="firstName" placeholder="John" className="bg-input border-input-border" />
+                        <Label htmlFor="firstName">Nome</Label>
+                        <Input id="firstName" placeholder="João" className="bg-input border-input-border" />
                       </div>
                       <div className="space-y-1.5">
-                        <Label htmlFor="lastName">Last Name</Label>
-                        <Input id="lastName" placeholder="Doe" className="bg-input border-input-border" />
+                        <Label htmlFor="lastName">Sobrenome</Label>
+                        <Input id="lastName" placeholder="Silva" className="bg-input border-input-border" />
                       </div>
                     </div>
                     <div className="space-y-1.5">
-                      <Label htmlFor="email">Email Address</Label>
-                      <Input id="email" type="email" placeholder="john.doe@example.com" className="bg-input border-input-border" />
+                      <Label htmlFor="email">Endereço de E-mail</Label>
+                      <Input id="email" type="email" placeholder="joao.silva@example.com" className="bg-input border-input-border" />
                     </div>
                     <div className="space-y-1.5">
-                      <Label htmlFor="subject">Subject</Label>
-                      <Input id="subject" placeholder="Regarding Solude Platform" className="bg-input border-input-border" />
+                      <Label htmlFor="subject">Assunto</Label>
+                      <Input id="subject" placeholder="Sobre a Solude Platform" className="bg-input border-input-border" />
                     </div>
                     <div className="space-y-1.5">
-                      <Label htmlFor="message">Message</Label>
-                      <Textarea id="message" placeholder="Your message..." rows={5} className="bg-input border-input-border" />
+                      <Label htmlFor="message">Mensagem</Label>
+                      <Textarea id="message" placeholder="Sua mensagem..." rows={5} className="bg-input border-input-border" />
                     </div>
-                    <Button type="submit" className="w-full sm:w-auto" size="lg">Send Message</Button>
+                    <Button type="submit" className="w-full sm:w-auto" size="lg">Enviar Mensagem</Button>
                   </form>
                 </CardContent>
               </Card>
@@ -63,12 +65,12 @@ export default function ContactPage() {
               <div className="space-y-8">
                 <Card className="shadow-lg bg-card">
                   <CardHeader>
-                    <CardTitle className="text-xl">Contact Information</CardTitle>
+                    <CardTitle className="text-xl">Informações de Contato</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4 text-muted-foreground">
                     <div className="flex items-start">
                       <MapPin className="h-5 w-5 mr-3 mt-1 text-primary flex-shrink-0" />
-                      <span>123 Innovation Drive, Tech City, TX 75001, USA</span>
+                      <span>123 Innovation Drive, Tech City, TX 75001, EUA</span>
                     </div>
                     <div className="flex items-center">
                       <Mail className="h-5 w-5 mr-3 text-primary flex-shrink-0" />
@@ -83,18 +85,17 @@ export default function ContactPage() {
                 
                 <Card className="shadow-lg bg-card">
                   <CardHeader>
-                    <CardTitle className="text-xl">Business Hours</CardTitle>
+                    <CardTitle className="text-xl">Horário de Funcionamento</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-2 text-muted-foreground">
-                    <p>Monday - Friday: 9:00 AM - 6:00 PM (CST)</p>
-                    <p>Saturday - Sunday: Closed</p>
+                    <p>Segunda - Sexta: 9:00 - 18:00 (Horário de Brasília)</p>
+                    <p>Sábado - Domingo: Fechado</p>
                   </CardContent>
                 </Card>
               </div>
             </div>
           </div>
         </section>
-        <PartnersCarousel sectionBgClass="bg-section-alternate-background" />
       </main>
       <Footer />
     </div>

@@ -27,20 +27,21 @@ export default function HomePage() {
       <MainHeader />
       <main className="flex-grow">
         <HeroSection />
+        <PartnersCarousel sectionBgClass="bg-background" />
         <FeatureSection />
         
         <section id="how-it-works" className="py-16 md:py-24 bg-section-alternate-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-6">
-              How <span className="text-primary">Solude</span> Works
+              Como a <span className="text-primary">Solude</span> Funciona
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-12">
-              Discover the simple yet powerful process of leveraging Solude Platform for your business needs.
+              Descubra o processo simples, porém poderoso, de utilizar a Solude Platform para as necessidades do seu negócio.
             </p>
             <div className="relative aspect-video max-w-4xl mx-auto rounded-xl overflow-hidden shadow-2xl">
                <Image 
                 src="https://placehold.co/1280x720.png" 
-                alt="Product Demo Thumbnail"
+                alt="Miniatura da Demonstração do Produto"
                 layout="fill"
                 objectFit="cover"
                 data-ai-hint="video thumbnail"
@@ -50,7 +51,7 @@ export default function HomePage() {
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 mr-3">
                     <path fillRule="evenodd" d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z" clipRule="evenodd" />
                   </svg>
-                  Watch Demo
+                  Assistir Demo
                 </Button>
               </div>
             </div>
@@ -62,10 +63,10 @@ export default function HomePage() {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
-                Our Comprehensive <span className="text-primary">Service Portfolio</span>
+                Nosso Portfólio Abrangente de <span className="text-primary">Serviços</span>
               </h2>
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-                Beyond our platform, we offer a range of expert services to support your organization's strategic goals.
+                Além da nossa plataforma, oferecemos uma gama de serviços especializados para apoiar os objetivos estratégicos da sua organização.
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
@@ -89,23 +90,21 @@ export default function HomePage() {
           </div>
         </section>
         
-        <PartnersCarousel sectionBgClass="bg-background" />
-
         {/* Call to Action Section */}
         <section id="contact" className="py-16 md:py-24 bg-section-alternate-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-6">
-              Ready to Elevate Your Business?
+              Pronto para Elevar Seu Negócio?
             </h2>
             <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-8">
-              Join leading companies who trust Solude Platform to drive their success. Get started today or contact our experts for a personalized consultation.
+              Junte-se às empresas líderes que confiam na Solude Platform para impulsionar seu sucesso. Comece hoje mesmo ou entre em contato com nossos especialistas para uma consulta personalizada.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button size="lg" asChild className="shadow-lg">
-                <Link href="/login">Get Started</Link>
+                <Link href="/login">Começar Agora</Link>
               </Button>
               <Button size="lg" variant="outline" asChild className="shadow-sm border-primary/50 text-primary hover:bg-primary/10">
-                <Link href="/contact">Contact Sales</Link>
+                <Link href="/contact">Fale com Vendas</Link>
               </Button>
             </div>
           </div>

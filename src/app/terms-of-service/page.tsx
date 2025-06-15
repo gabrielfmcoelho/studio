@@ -2,11 +2,10 @@ import MainHeader from '@/components/layout/MainHeader';
 import Footer from '@/components/layout/Footer';
 import PartnersCarousel from '@/components/layout/PartnersCarousel';
 import { FileText } from 'lucide-react';
-import Link from 'next/link'; // Import Link
+import Link from 'next/link'; 
 
-// This page can remain a server component.
 export default function TermsOfServicePage() {
-  const lastUpdatedDate = new Date().toLocaleDateString('en-US', {
+  const lastUpdatedDate = new Date().toLocaleDateString('pt-BR', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -21,55 +20,56 @@ export default function TermsOfServicePage() {
             <div className="text-center mb-12">
               <FileText className="mx-auto h-16 w-16 text-primary mb-4" />
               <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground">
-                Terms of Service
+                Termos de Serviço
               </h1>
-              <p className="mt-2 text-sm text-muted-foreground">Last Updated: {lastUpdatedDate}</p>
+              <p className="mt-2 text-sm text-muted-foreground">Última Atualização: {lastUpdatedDate}</p>
             </div>
+
+            <PartnersCarousel sectionBgClass="bg-section-alternate-background" />
             
-            <article className="prose lg:prose-xl mx-auto text-foreground prose-headings:text-foreground prose-a:text-primary hover:prose-a:text-primary/80 prose-strong:text-foreground">
-              <h2>1. Acceptance of Terms</h2>
-              <p>By accessing or using the Solude Platform ("Service"), you agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of the terms, then you may not access the Service. These Terms apply to all visitors, users, and others who access or use the Service.</p>
+            <article className="prose lg:prose-xl mx-auto text-foreground prose-headings:text-foreground prose-a:text-primary hover:prose-a:text-primary/80 prose-strong:text-foreground mt-12 md:mt-16">
+              <h2>1. Aceitação dos Termos</h2>
+              <p>Ao acessar ou usar a Solude Platform ("Serviço"), você concorda em ficar vinculado por estes Termos de Serviço ("Termos"). Se você discordar de qualquer parte dos termos, então você não poderá acessar o Serviço. Estes Termos se aplicam a todos os visitantes, usuários e outros que acessam ou usam o Serviço.</p>
 
-              <h2>2. Description of Service</h2>
-              <p>Solude Platform provides a suite of software solutions designed for businesses. The specific features and functionalities available to you will depend on your subscription plan and any applicable service agreements.</p>
+              <h2>2. Descrição do Serviço</h2>
+              <p>A Solude Platform fornece um conjunto de soluções de software projetadas para empresas. As funcionalidades e recursos específicos disponíveis para você dependerão do seu plano de assinatura e de quaisquer contratos de serviço aplicáveis.</p>
 
-              <h2>3. User Accounts</h2>
-              <p>When you create an account with us, you must provide information that is accurate, complete, and current at all times. Failure to do so constitutes a breach of the Terms, which may result in immediate termination of your account on our Service. You are responsible for safeguarding the password that you use to access the Service and for any activities or actions under your password.</p>
+              <h2>3. Contas de Usuário</h2>
+              <p>Ao criar uma conta conosco, você deve fornecer informações que sejam precisas, completas e atuais em todos os momentos. O não cumprimento constitui uma violação dos Termos, o que pode resultar na rescisão imediata de sua conta em nosso Serviço. Você é responsável por proteger a senha que usa para acessar o Serviço e por quaisquer atividades ou ações sob sua senha.</p>
 
-              <h2>4. Use of the Service</h2>
-              <p>You agree not to use the Service:</p>
+              <h2>4. Uso do Serviço</h2>
+              <p>Você concorda em não usar o Serviço:</p>
               <ul>
-                <li>In any way that violates any applicable national or international law or regulation.</li>
-                <li>For the purpose of exploiting, harming, or attempting to exploit or harm minors in any way.</li>
-                <li>To transmit, or procure the sending of, any advertising or promotional material, including any "junk mail," "chain letter," "spam," or any other similar solicitation.</li>
-                <li>To impersonate or attempt to impersonate Solude, a Solude employee, another user, or any other person or entity.</li>
+                <li>De qualquer forma que viole qualquer lei ou regulamento nacional ou internacional aplicável.</li>
+                <li>Com o propósito de explorar, prejudicar ou tentar explorar ou prejudicar menores de qualquer forma.</li>
+                <li>Para transmitir ou obter o envio de qualquer material publicitário ou promocional, incluindo qualquer "junk mail", "corrente", "spam" ou qualquer outra solicitação similar.</li>
+                <li>Para se passar ou tentar se passar por Solude, um funcionário da Solude, outro usuário ou qualquer outra pessoa ou entidade.</li>
               </ul>
 
-              <h2>5. Intellectual Property</h2>
-              <p>The Service and its original content (excluding Content provided by users), features, and functionality are and will remain the exclusive property of Solude and its licensors. The Service is protected by copyright, trademark, and other laws of both the United States and foreign countries.</p>
+              <h2>5. Propriedade Intelectual</h2>
+              <p>O Serviço e seu conteúdo original (excluindo Conteúdo fornecido pelos usuários), recursos e funcionalidades são e permanecerão propriedade exclusiva da Solude e seus licenciadores. O Serviço é protegido por direitos autorais, marcas registradas e outras leis dos Estados Unidos e de países estrangeiros.</p>
 
-              <h2>6. Termination</h2>
-              <p>We may terminate or suspend your account immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms. Upon termination, your right to use the Service will immediately cease.</p>
+              <h2>6. Rescisão</h2>
+              <p>Podemos rescindir ou suspender sua conta imediatamente, sem aviso prévio ou responsabilidade, por qualquer motivo, incluindo, sem limitação, se você violar os Termos. Após a rescisão, seu direito de usar o Serviço cessará imediatamente.</p>
 
-              <h2>7. Limitation of Liability</h2>
-              <p>In no event shall Solude, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from (i) your access to or use of or inability to access or use the Service; (ii) any conduct or content of any third party on the Service; (iii) any content obtained from the Service; and (iv) unauthorized access, use or alteration of your transmissions or content, whether based on warranty, contract, tort (including negligence) or any other legal theory, whether or not we have been informed of the possibility of such damage.</p>
+              <h2>7. Limitação de Responsabilidade</h2>
+              <p>Em nenhum caso a Solude, nem seus diretores, funcionários, parceiros, agentes, fornecedores ou afiliados, serão responsáveis por quaisquer danos indiretos, incidentais, especiais, consequenciais ou punitivos, incluindo, sem limitação, perda de lucros, dados, uso, goodwill ou outras perdas intangíveis, resultantes de (i) seu acesso ou uso ou incapacidade de acessar ou usar o Serviço; (ii) qualquer conduta ou conteúdo de terceiros no Serviço; (iii) qualquer conteúdo obtido do Serviço; e (iv) acesso não autorizado, uso ou alteração de suas transmissões ou conteúdo, seja com base em garantia, contrato, ato ilícito (incluindo negligência) ou qualquer outra teoria legal, tenhamos ou não sido informados da possibilidade de tal dano.</p>
 
-              <h2>8. Governing Law</h2>
-              <p>These Terms shall be governed and construed in accordance with the laws of the State of Texas, United States, without regard to its conflict of law provisions.</p>
+              <h2>8. Lei Aplicável</h2>
+              <p>Estes Termos serão regidos e interpretados de acordo com as leis do Estado do Texas, Estados Unidos, sem levar em conta suas disposições sobre conflito de leis.</p>
 
-              <h2>9. Changes to Terms</h2>
-              <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.</p>
+              <h2>9. Alterações aos Termos</h2>
+              <p>Reservamo-nos o direito, a nosso exclusivo critério, de modificar ou substituir estes Termos a qualquer momento. Se uma revisão for material, tentaremos fornecer um aviso de pelo menos 30 dias antes que quaisquer novos termos entrem em vigor. O que constitui uma alteração material será determinado a nosso exclusivo critério.</p>
 
-              <h2>10. Contact Us</h2>
-              <p>If you have any questions about these Terms, please contact us:</p>
+              <h2>10. Contate-Nos</h2>
+              <p>Se você tiver alguma dúvida sobre estes Termos, entre em contato conosco:</p>
               <ul>
-                <li>By email: legal@solude.tech</li>
-                <li>By visiting this page on our website: <Link href="/contact">www.solude.tech/contact</Link></li>
+                <li>Por e-mail: legal@solude.tech</li>
+                <li>Visitando esta página em nosso website: <Link href="/contact">www.solude.tech/contato</Link></li>
               </ul>
             </article>
           </div>
         </section>
-        <PartnersCarousel sectionBgClass="bg-section-alternate-background" />
       </main>
       <Footer />
     </div>

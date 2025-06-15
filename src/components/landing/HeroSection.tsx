@@ -10,20 +10,20 @@ export default function HeroSection() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="animate-slide-in-from-bottom space-y-6">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground">
-              Unlock Your Potential with <span className="text-primary">Solude Platform</span>
+              Desbloqueie Seu Potencial com a <span className="text-primary">Solude Platform</span>
             </h1>
             <p className="text-lg text-muted-foreground md:text-xl">
-              We provide cutting-edge solutions to transform your business, streamline operations, and drive growth. Discover the power of innovation with Solude.
+              Fornecemos soluções de ponta para transformar seu negócio, otimizar operações e impulsionar o crescimento. Descubra o poder da inovação com a Solude.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" asChild className="shadow-lg hover:shadow-primary/50 transition-shadow">
                 <Link href="/solutions">
-                  Explore Solutions <ArrowRight className="ml-2 h-5 w-5" />
+                  Explore Nossas Soluções <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
               <Button size="lg" variant="outline" asChild className="shadow-sm hover:shadow-accent/30 transition-shadow">
                 <Link href="#how-it-works"> 
-                  <PlayCircle className="mr-2 h-5 w-5" /> Watch Demo
+                  <PlayCircle className="mr-2 h-5 w-5" /> Assistir Demo
                 </Link>
               </Button>
             </div>
@@ -31,7 +31,7 @@ export default function HeroSection() {
           <div className="animate-fade-in delay-300">
             <Image
               src="https://placehold.co/600x400.png"
-              alt="Solude Platform Abstract Representation"
+              alt="Representação Abstrata da Solude Platform"
               width={600}
               height={400}
               className="rounded-xl shadow-2xl object-cover"
