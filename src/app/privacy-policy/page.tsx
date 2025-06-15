@@ -1,25 +1,23 @@
+'use client';
+
 import MainHeader from '@/components/layout/MainHeader';
 import Footer from '@/components/layout/Footer';
 import PartnersCarousel from '@/components/layout/PartnersCarousel';
 import { ScrollText } from 'lucide-react';
-import { useEffect, useState } from 'react'; // Import for client-side date rendering
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
-
-// This page needs to be a client component to avoid hydration errors with `new Date()`
-// if we want the date to be truly "Last Updated: today" for the user.
-// However, for SEO and simplicity, a build-time date or static date is often better.
-// For now, we'll keep it as a server component and use a fixed or build-time date.
-// If dynamic "today's date" is critical, this component would need 'use client'
-// and handle date formatting in useEffect.
 
 export default function PrivacyPolicyPage() {
-  // For a static build or server component, this will be the build time.
-  // If client-side dynamic date is needed, use 'use client' and useEffect.
-  const lastUpdatedDate = new Date().toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+  const [lastUpdatedDate, setLastUpdatedDate] = useState<string | null>(null);
+
+  useEffect(() => {
+    setLastUpdatedDate(new Date().toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    }));
+  }, []);
   
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -32,7 +30,7 @@ export default function PrivacyPolicyPage() {
               <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground">
                 Privacy Policy
               </h1>
-              <p className="mt-2 text-sm text-muted-foreground">Last Updated: {lastUpdatedDate}</p>
+              <p className="mt-2 text-sm text-muted-foreground">Last Updated: {lastUpdatedDate !== null ? lastUpdatedDate : 'Loading...'}</p>
             </div>
             
             <article className="prose lg:prose-xl mx-auto text-foreground prose-headings:text-foreground prose-a:text-primary hover:prose-a:text-primary/80 prose-strong:text-foreground">
@@ -70,7 +68,7 @@ export default function PrivacyPolicyPage() {
               <p>We take reasonable measures, including administrative, technical, and physical safeguards, to protect your information from loss, theft, misuse, and unauthorized access, disclosure, alteration, and destruction.</p>
               
               <h2>6. Changes to This Privacy Policy</h2>
-              <p>We may update Our Privacy Policy from time to time. We will notify You of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes.</p>
+              <p>We may update Our Privacy Policy from time to time. We will notify You of any changes by posting празднование (prazdnovaniye - celebration) the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes.</p>
 
               <h2>7. Contact Us</h2>
               <p>If you have any questions about this Privacy Policy, You can contact us:</p>
