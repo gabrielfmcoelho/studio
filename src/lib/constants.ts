@@ -1,3 +1,4 @@
+
 export const APP_NAME = "Solude Platform";
 
 export const NAV_LINKS = {
@@ -21,10 +22,42 @@ export const MOCK_SOLUTIONS = [
 ];
 
 export const MOCK_TEAM_MEMBERS = [
-  { id: "1", name: "Dr. Elara Vance", role: "Chief Executive Officer", expertise: "Strategic Leadership, Innovation", imageUrl: "https://placehold.co/300x300.png", dataAiHint: "woman portrait" },
-  { id: "2", name: "Marcus Chen", role: "Chief Technology Officer", expertise: "Software Architecture, AI", imageUrl: "https://placehold.co/300x300.png", dataAiHint: "man portrait" },
-  { id: "3", name: "Sofia Reyes", role: "VP of Solutions", expertise: "Product Management, UX Design", imageUrl: "https://placehold.co/300x300.png", dataAiHint: "woman professional" },
-  { id: "4", name: "James Miller", role: "Lead Engineer", expertise: "Full-Stack Development", imageUrl: "https://placehold.co/300x300.png", dataAiHint: "man tech" },
+  { 
+    id: "1", 
+    name: "Dr. Elara Vance", 
+    role: "Chief Executive Officer", 
+    expertise: "Strategic Leadership, Innovation", 
+    imageUrl: "https://placehold.co/400x400.png", 
+    dataAiHint: "woman portrait",
+    description: "Dr. Vance is a visionary leader with 20+ years in tech, driving innovation and strategic growth for global enterprises."
+  },
+  { 
+    id: "2", 
+    name: "Marcus Chen", 
+    role: "Chief Technology Officer", 
+    expertise: "Software Architecture, AI", 
+    imageUrl: "https://placehold.co/400x400.png", 
+    dataAiHint: "man portrait",
+    description: "Marcus architect's cutting-edge solutions, leveraging AI and scalable systems to solve complex business challenges."
+  },
+  { 
+    id: "3", 
+    name: "Sofia Reyes", 
+    role: "VP of Solutions", 
+    expertise: "Product Management, UX Design", 
+    imageUrl: "https://placehold.co/400x400.png", 
+    dataAiHint: "woman professional",
+    description: "Sofia translates client needs into impactful products, focusing on user-centric design and seamless experiences."
+  },
+  { 
+    id: "4", 
+    name: "James Miller", 
+    role: "Lead Engineer", 
+    expertise: "Full-Stack Development", 
+    imageUrl: "https://placehold.co/400x400.png", 
+    dataAiHint: "man tech",
+    description: "James leads our development team, ensuring robust, high-quality code and efficient project delivery."
+  },
 ];
 
 export const AUTH_TOKEN_KEY = "soludeAuthToken";

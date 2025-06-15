@@ -1,18 +1,25 @@
+
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { AUTH_TOKEN_KEY } from '@/lib/constants';
 
 // Define which routes are protected and require authentication.
-// The Solutions page is now public.
 const PROTECTED_ROUTES = ['/hub', '/solution', '/admin', '/account']; 
-// Note: /solution/[id] is also implicitly protected by '/solution'
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const authToken = request.cookies.get(AUTH_TOKEN_KEY)?.value;
 
   // Check if the current path is one of the protected routes or a sub-path.
-  const isProtectedRoute = PROTECTED_ROUTES.some(route => pathname.startsWith(route));
+  const isProtectedRoute = PROTECTED_ROUTES.some(protectedRoute => {
+    if (protectedRoute === '/solution') {
+      // This ensures that '/solution' protects '/solution' itself and '/solution/...'
+      // but does NOT protect '/solutions' (the public landing page).
+      return pathname === protectedRoute || pathname.startsWith(protectedRoute + '/');
+    }
+    // For all other routes in PROTECTED_ROUTES, the original startsWith logic is fine.
+    return pathname.startsWith(protectedRoute);
+  });
 
   // If it's a protected route and the user is not authenticated, redirect to login.
   if (isProtectedRoute && !authToken) {

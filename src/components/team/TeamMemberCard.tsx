@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Linkedin, Twitter, Briefcase } from 'lucide-react';
@@ -10,6 +11,7 @@ interface TeamMemberCardProps {
   expertise: string;
   imageUrl: string;
   dataAiHint: string;
+  description: string;
   linkedinUrl?: string;
   twitterUrl?: string;
   className?: string;
@@ -21,6 +23,7 @@ export default function TeamMemberCard({
   expertise,
   imageUrl,
   dataAiHint,
+  description,
   linkedinUrl = "#",
   twitterUrl = "#",
   className
@@ -28,7 +31,7 @@ export default function TeamMemberCard({
   return (
     <Card className={cn("overflow-hidden shadow-lg hover:shadow-primary/20 transition-all duration-300 ease-in-out transform hover:-translate-y-1 bg-card flex flex-col", className)}>
       <CardHeader className="p-0">
-        <div className="relative w-full aspect-[4/3]"> {/* Changed to aspect ratio for consistency */}
+        <div className="relative w-full aspect-[4/3]">
           <Image
             src={imageUrl}
             alt={name}
@@ -41,10 +44,13 @@ export default function TeamMemberCard({
       </CardHeader>
       <CardContent className="p-6 text-center flex flex-col flex-grow">
         <CardTitle className="text-xl font-semibold text-primary mb-1">{name}</CardTitle>
-        <CardDescription className="text-sm text-muted-foreground mb-3 flex items-center justify-center">
+        <CardDescription className="text-sm text-muted-foreground mb-1 flex items-center justify-center">
           <Briefcase size={14} className="mr-2 flex-shrink-0" /> {role}
         </CardDescription>
-        <Badge variant="secondary" className="mb-4 text-xs">{expertise}</Badge>
+        <Badge variant="secondary" className="mb-3 text-xs">{expertise}</Badge>
+        <p className="text-xs text-muted-foreground mt-1 mb-3 px-1 line-clamp-3 flex-grow min-h-[3em]">
+          {description}
+        </p>
         
         <div className="flex justify-center space-x-3 mt-auto pt-3">
           {twitterUrl && twitterUrl !== "#" && (
