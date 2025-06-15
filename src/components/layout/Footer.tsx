@@ -1,0 +1,62 @@
+import { APP_NAME } from '@/lib/constants';
+import Link from 'next/link';
+import Logo from '@/components/icons/Logo';
+import { Github, Linkedin, Twitter } from 'lucide-react';
+
+export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="border-t border-border/40 bg-background print:hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <Link href="/" className="inline-block mb-4">
+              <Logo />
+            </Link>
+            <p className="text-sm text-muted-foreground max-w-xs">
+              Empowering businesses with innovative technology solutions.
+            </p>
+          </div>
+          
+          <div>
+            <h3 className="text-sm font-semibold text-foreground tracking-wider uppercase mb-4">Quick Links</h3>
+            <ul className="space-y-2">
+              <li><Link href="/solutions" className="text-sm text-muted-foreground hover:text-primary">Our Solutions</Link></li>
+              <li><Link href="/team" className="text-sm text-muted-foreground hover:text-primary">Meet the Team</Link></li>
+              <li><Link href="/#contact" className="text-sm text-muted-foreground hover:text-primary">Contact Us</Link></li>
+              <li><Link href="/login" className="text-sm text-muted-foreground hover:text-primary">Client Login</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-sm font-semibold text-foreground tracking-wider uppercase mb-4">Connect With Us</h3>
+            <div className="flex space-x-4">
+              <Link href="#" aria-label="Twitter" className="text-muted-foreground hover:text-primary">
+                <Twitter size={20} />
+              </Link>
+              <Link href="#" aria-label="LinkedIn" className="text-muted-foreground hover:text-primary">
+                <Linkedin size={20} />
+              </Link>
+              <Link href="#" aria-label="GitHub" className="text-muted-foreground hover:text-primary">
+                <Github size={20} />
+              </Link>
+            </div>
+            <p className="mt-4 text-sm text-muted-foreground">
+              123 Innovation Drive, Tech City, TX 75001
+            </p>
+          </div>
+        </div>
+        <div className="mt-12 border-t border-border/40 pt-8 flex flex-col sm:flex-row justify-between items-center">
+          <p className="text-xs text-muted-foreground">
+            &copy; {currentYear} {APP_NAME}. All rights reserved.
+          </p>
+          <div className="flex space-x-4 mt-4 sm:mt-0">
+            <Link href="/privacy-policy" className="text-xs text-muted-foreground hover:text-primary">Privacy Policy</Link>
+            <Link href="/terms-of-service" className="text-xs text-muted-foreground hover:text-primary">Terms of Service</Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
