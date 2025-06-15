@@ -21,7 +21,7 @@ const loginSchema = z.object({
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 export default function LoginForm() {
-  const { login, guestLogin } = useAuth(); // Added guestLogin
+  const { login, guestLogin } = useAuth();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [isGuestLoading, setIsGuestLoading] = useState(false);
@@ -124,22 +124,24 @@ export default function LoginForm() {
           Entrar
         </Button>
       </form>
+      
+      <Button variant="outline" className="w-full" onClick={handleGuestLogin} disabled={isLoading || isGuestLoading}>
+        {isGuestLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <UserSquare2 className="mr-2 h-4 w-4" /> }
+        Login como Convidado
+      </Button>
+
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
           <span className="w-full border-t" />
         </div>
         <div className="relative flex justify-center text-xs uppercase">
           <span className="bg-card px-2 text-muted-foreground">
-            Ou continue como
+            Ou use uma conta de demonstração
           </span>
         </div>
       </div>
-      <Button variant="outline" className="w-full" onClick={handleGuestLogin} disabled={isLoading || isGuestLoading}>
-        {isGuestLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <UserSquare2 className="mr-2 h-4 w-4" /> }
-        Convidado
-      </Button>
+      
        <div className="text-center text-sm text-muted-foreground">
-          <p>Contas de demonstração (API):</p>
           <p>user@solude.tech / admin</p>
           <p>admin@solude.tech / admin</p>
       </div>
