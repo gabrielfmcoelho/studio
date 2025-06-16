@@ -20,13 +20,13 @@ export default function MainHeader() {
 
   useEffect(() => {
     setIsAuthenticated(checkAuth());
-  }, [pathname]);
+  }, [pathname]); // Re-check auth status on path change, e.g., after login/logout redirect
 
   const handleLogout = () => {
     apiLogout();
     setIsAuthenticated(false);
-    router.push('/login');
-    router.refresh();
+    router.push('/login'); // Redirect to login page
+    router.refresh(); // Refresh current route to reflect logged out state if on protected page
   };
 
   const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
@@ -52,21 +52,21 @@ export default function MainHeader() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 max-w-screen-2xl items-center px-4 sm:px-6 lg:px-8">
+      <div className="container flex h-16 max-w-screen-2xl items-center px-4 sm:px-6 lg:px-8"> {/* Main flex container */}
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
           <Logo />
         </Link>
         
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex flex-grow items-center space-x-1 lg:space-x-2 ml-6 lg:ml-8">
+        <nav className="hidden md:flex flex-grow items-center space-x-1 lg:space-x-2 ml-6 lg:ml-8"> {/* flex-grow here, ml for spacing */}
           {NAV_LINKS.public.map((link) => (
             <NavLink key={link.href} href={link.href}>{link.label}</NavLink>
           ))}
         </nav>
 
         {/* Auth Buttons & Mobile Menu Trigger Group - Pushed to the right */}
-        <div className="flex items-center space-x-2 ml-auto">
+        <div className="flex items-center space-x-2 ml-auto"> {/* ml-auto here to push this group to the right */}
           {/* Desktop Auth Buttons */}
           <div className="hidden md:flex items-center space-x-2"> 
             {isAuthenticated ? (
