@@ -9,15 +9,16 @@ interface Partner {
 }
 
 const partners: Partner[] = [
-  { id: '1', name: 'Centelha PI MCTI', logoUrl: 'https://placehold.co/150x60/ffffff/377bff.png?text=Centelha+PI', dataAiHint: 'centelha mcti logo' },
-  { id: '2', name: 'Partner B', logoUrl: 'https://placehold.co/150x60/ffffff/333333.png?text=Partner+B', dataAiHint: 'company logo' },
-  { id: '3', name: 'Partner C', logoUrl: 'https://placehold.co/150x60/ffffff/cccccc.png?text=Partner+C&font=roboto', dataAiHint: 'tech logo' },
-  { id: '4', name: 'Partner D', logoUrl: 'https://placehold.co/150x60/377bff/ffffff.png?text=Partner+D', dataAiHint: 'business logo' },
-  { id: '5', name: 'Partner E', logoUrl: 'https://placehold.co/150x60/22293b/ffffff.png?text=Partner+E', dataAiHint: 'organization logo' },
-  { id: '6', name: 'Partner F', logoUrl: 'https://placehold.co/150x60/7DF9FF/22293B.png?text=Partner+F', dataAiHint: 'startup logo' },
-  // Add more partners as needed. For a smooth infinite scroll, ensure enough items (e.g., > 6-8).
+  { id: '1', name: 'Centelha PI', logoUrl: '/CENTELHA.png', dataAiHint: 'centelha mcti logo' },
+  { id: '2', name: 'CIATEN UFPI', logoUrl: '/Ciaten.png', dataAiHint: 'CIATEN UFPI logo'},
+  { id: '3', name: 'EBSERH', logoUrl: '/EBSERH.png', dataAiHint: 'EBSERH - Empresa Brasileira de Serviços Hospitalares logo' },
+  { id: '4', name: 'FAPEPI', logoUrl: '/FAPEPI.png', dataAiHint: 'FAPEPI - Fundação de Amparo à Pesquisa do Estado do Piauí logo' },
+  { id: '5', name: 'HU UFPI', logoUrl: '/HU.png', dataAiHint: 'Hospital Universitário da UFPI logo' },
+  { id: '6', name: 'Investe Piauí', logoUrl: '/investepiaui.png', dataAiHint: 'Investe Piauí logo' },
+  { id: '7', name: 'São Marcos', logoUrl: '/saomarcos.png', dataAiHint: 'Hospital São Marcos logo' },
+  { id: '8', name: 'StartupNE', logoUrl: '/StartupNE.png', dataAiHint: 'Startup Nordeste logo' },
+  { id: '9', name: 'Startup Piauí', logoUrl: '/startuppiaui.png', dataAiHint: 'Startup Piauí logo' }
 ];
-
 // Duplicate partners for seamless looping effect
 const duplicatedPartners = [...partners, ...partners];
 
@@ -30,7 +31,7 @@ export default function PartnersCarousel({ sectionBgClass = 'bg-background' }: P
     <section className={cn("py-12 md:py-16", sectionBgClass)}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-2xl font-semibold tracking-tight text-center text-foreground mb-10">
-          Our Valued Institutional Partners
+          Instituições que Confiam em nossas Soluções
         </h2>
         <div className={cn("logos-container", sectionBgClass === 'bg-section-alternate-background' ? 'bg-alternate' : '')}>
           <div className="logos-slide">

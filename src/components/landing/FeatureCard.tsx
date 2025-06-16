@@ -43,6 +43,8 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
             className="rounded-t-lg"
             data-ai-hint="software screenshot"
           />
+          {/* Dark opacity gradient at the bottom */}
+          <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black/70 to-transparent rounded-t-lg"></div>
         </div>
       ) : (
         <CardHeader className="items-center text-center pt-6">
@@ -63,11 +65,12 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
         </CardHeader>
       )}
       
-      {!isScreenshot && ( // If it's a screenshot, title might be part of the image or styled differently
+      {/*!isScreenshot && ( // If it's a screenshot, title might be part of the image or styled differently
           <CardHeader className="items-center text-center pt-2">
+              <h1>TESTE 1</h1>
              <CardTitle className="text-xl font-semibold">{title}</CardTitle>
           </CardHeader>
-      )}
+      )*/}
       {isScreenshot && (
          <CardHeader className="items-center text-center pt-6">
             <CardTitle className="text-xl font-semibold">{title}</CardTitle>
@@ -78,10 +81,12 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
       <CardContent className="flex-grow">
         <CardDescription className="text-center text-muted-foreground">{description}</CardDescription>
         {detailsList && detailsList.length > 0 && (
-          <div className="mt-4 text-left">
+          <div className="mt-4 text-center">
             {detailsListTitle && <h4 className="text-sm font-semibold mb-2 text-foreground">{detailsListTitle}</h4>}
             <ul className="list-disc list-inside text-xs text-muted-foreground space-y-1">
+              <div className="grid grid-cols-2 gap-y-1">
               {detailsList.slice(0, 5).map((item, idx) => <li key={idx}>{item}</li>)}
+              </div>
             </ul>
           </div>
         )}

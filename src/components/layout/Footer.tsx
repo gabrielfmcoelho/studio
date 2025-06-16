@@ -43,7 +43,7 @@ export default function Footer() {
               </Link>
             </div>
             <p className="mt-4 text-sm text-muted-foreground">
-              123 Innovation Drive, Tech City, TX 75001, EUA
+              Teresina, Piauí, Brasil
             </p>
           </div>
         </div>

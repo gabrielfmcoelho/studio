@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 interface TeamMemberCardProps {
   name: string;
   role: string;
-  expertise: string;
+  expertise?: string;
   imageUrl: string;
   dataAiHint: string;
   description: string;

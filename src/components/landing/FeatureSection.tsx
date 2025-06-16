@@ -1,50 +1,54 @@
-import FeatureCard from './FeatureCard';
+import { cn } from '@/lib/utils';
 
-export default function FeatureSection() {
-  const features = [
-    {
-      iconName: "BarChartBig" as const,
-      title: "Análises Poderosas",
-      description: "Obtenha insights profundos com nossas ferramentas avançadas de análise e dashboards personalizáveis."
-    },
-    {
-      iconName: "Users" as const,
-      title: "Colaboração Contínua",
-      description: "Trabalhe em conjunto de forma eficiente com recursos integrados de comunicação e gerenciamento de projetos."
-    },
-    {
-      iconName: "ShieldCheck" as const,
-      title: "Segurança de Nível Empresarial",
-      description: "Proteja seus dados com medidas de segurança robustas e certificações de conformidade."
-    },
-    {
-      iconName: "Settings2" as const,
-      title: "Altamente Personalizável",
-      description: "Adapte a plataforma às suas necessidades específicas com configurações e integrações flexíveis."
-    }
-  ];
+interface CustomizableFeatureSectionProps<T> {
+  /** A unique identifier for the section element */
+  id: string;
+  sectionBgClass?: string; // e.g., 'bg-background' or 'bg-section-alternate-background'
+  /** The first part of the main title */
+  titleStart: string;
+  /** The highlighted part of the title (will be colored with the primary theme color) */
+  titleHighlight: string;
+  /** An optional last part of the title */
+  titleEnd?: string;
+  /** The subtitle or descriptive paragraph for the section */
+  subtitle: string;
+  /** An array of data items to be rendered in the grid */
+  items: T[];
+  /** Tailwind CSS classes to configure the grid layout (e.g., 'grid-cols-1 md:grid-cols-4') */
+  gridConfig: string;
+  /** A render prop function that takes an item and its index and returns a React node to render */
+  renderItem: (item: T, index: number) => React.ReactNode;
+}
 
+export default function CustomizableFeatureSection<T>({
+  id,
+  sectionBgClass = 'bg-background',
+  titleStart,
+  titleHighlight,
+  titleEnd = '',
+  subtitle,
+  items,
+  gridConfig,
+  renderItem,
+}: CustomizableFeatureSectionProps<T>) {
   return (
-    <section id="features" className="py-16 md:py-24 bg-background">
+    <section id={id} className={cn("py-16 md:py-24 bg-background dark:bg-gray-900 text-foreground dark:text-gray-100", sectionBgClass)}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
-            Tudo o que Você Precisa para o Sucesso
+          {/* Main title with a highlighted part */}
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+            {titleStart}{' '}
+            <span className="text-primary dark:text-blue-400">{titleHighlight}</span>
+            {' '}{titleEnd}
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            A Solude Platform oferece um conjunto abrangente de ferramentas projetadas para elevar o desempenho do seu negócio e impulsionar a inovação.
+          {/* Subtitle */}
+          <p className="mt-4 text-lg text-muted-foreground dark:text-gray-400 max-w-2xl mx-auto">
+            {subtitle}
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, index) => (
-            <div key={index} className="animate-slide-in-from-bottom" style={{ animationDelay: `${index * 150}ms` }}>
-              <FeatureCard              
-                iconName={feature.iconName}
-                title={feature.title}
-                description={feature.description}
-              />
-            </div>
-          ))}
+        {/* Responsive grid for the feature items */}
+        <div className={`grid ${gridConfig} gap-8`}>
+          {items.map((item, index) => renderItem(item, index))}
         </div>
       </div>
     </section>

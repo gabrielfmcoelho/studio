@@ -10,10 +10,10 @@ export default function HeroSection() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="animate-slide-in-from-bottom space-y-6">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground">
-              Desbloqueie Seu Potencial com a <span className="text-primary">Solude Platform</span>
+              Transforme Dados em Saúde com a <span className="text-primary">Plataforma Solude</span>
             </h1>
             <p className="text-lg text-muted-foreground md:text-xl">
-              Fornecemos soluções de ponta para transformar seu negócio, otimizar operações e impulsionar o crescimento. Descubra o poder da inovação com a Solude.
+              Fornecemos soluções de ponta para transformar sua instiuição, otimizar operações. Descubra o poder da inovação com a Solude.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" asChild className="shadow-lg hover:shadow-primary/50 transition-shadow">
