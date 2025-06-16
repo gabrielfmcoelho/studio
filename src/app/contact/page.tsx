@@ -45,8 +45,6 @@ export default function ContactPage() {
                 Adoraríamos ouvir de você! Se você tem alguma dúvida sobre funcionalidades, testes, preços ou qualquer outra चीज, nossa equipe está pronta para responder a todas as suas perguntas.
               </p>
             </div>
-            
-            <PartnersCarousel sectionBgClass="bg-section-alternate-background" />
 
             <div className="grid md:grid-cols-2 gap-12 items-start mt-12 md:mt-16">
               <Card className="shadow-xl bg-card">

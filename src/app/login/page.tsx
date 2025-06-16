@@ -17,13 +17,13 @@ export default function LoginPage() {
             </Link>
             <CardTitle className="text-2xl sm:text-3xl font-bold">Bem-vindo de Volta</CardTitle>
             <CardDescription className="text-muted-foreground">
-              Faça login para acessar suas soluções Solude Platform.
+              Faça login para acessar suas soluções Solude.
             </CardDescription>
           </CardHeader>
           <CardContent>
             <LoginForm />
             <p className="mt-6 text-center text-sm text-muted-foreground">
-              Não tem uma conta?{' '}
+              Sua instituição já é aderente?{' '}
               <Link href="/signup" className="font-medium text-primary hover:underline">
                 Cadastre-se
               </Link>

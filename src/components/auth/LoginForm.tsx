@@ -62,6 +62,7 @@ export default function LoginForm() {
     setIsGuestLoading(true);
     setError(null);
     try {
+      console.log("Tentando login como convidado...");
       await guestLogin();
       toast({
         title: "Login como Convidado",
@@ -125,11 +126,6 @@ export default function LoginForm() {
         </Button>
       </form>
       
-      <Button variant="outline" className="w-full" onClick={handleGuestLogin} disabled={isLoading || isGuestLoading}>
-        {isGuestLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <UserSquare2 className="mr-2 h-4 w-4" /> }
-        Login como Convidado
-      </Button>
-
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
           <span className="w-full border-t" />
@@ -140,11 +136,11 @@ export default function LoginForm() {
           </span>
         </div>
       </div>
-      
-       <div className="text-center text-sm text-muted-foreground">
-          <p>user@solude.tech / admin</p>
-          <p>admin@solude.tech / admin</p>
-      </div>
+
+      <Button variant="outline" className="w-full border-primary" onClick={handleGuestLogin} disabled={isLoading || isGuestLoading}>
+        {isGuestLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <UserSquare2 className="mr-2 h-4 w-4" /> }
+        Login como Convidado
+      </Button>
     </div>
   );
 }

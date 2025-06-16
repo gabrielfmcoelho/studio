@@ -1,3 +1,5 @@
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:3311029861.
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:1364582968.
 import MainHeader from '@/components/layout/MainHeader';
 import Footer from '@/components/layout/Footer';
 import Logo from '@/components/icons/Logo';
@@ -6,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { UserPlus } from 'lucide-react';
 
 export default function SignupPage() {
@@ -20,25 +23,42 @@ export default function SignupPage() {
             </Link>
             <CardTitle className="text-2xl sm:text-3xl font-bold">Crie uma Conta</CardTitle>
             <CardDescription className="text-muted-foreground">
-              Junte-se à Solude Platform e comece a transformar seu negócio hoje mesmo.
+              Junte-se ao Ecossistema hoje mesmo.
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form className="space-y-6">
                 <div className="space-y-2">
-                    <Label htmlFor="fullName">Nome Completo</Label>
+                    <Label htmlFor="fullName">1. Nome Completo</Label>
                     <Input id="fullName" placeholder="João da Silva" className="bg-input" />
                 </div>
                 <div className="space-y-2">
-                    <Label htmlFor="email">E-mail</Label>
+                    <Label htmlFor="email">2. E-mail</Label>
                     <Input id="email" type="email" placeholder="joao@example.com" className="bg-input" />
                 </div>
                 <div className="space-y-2">
-                    <Label htmlFor="password">Senha</Label>
-                    <Input id="password" type="password" placeholder="••••••••" className="bg-input" />
+                    <Label htmlFor="organization">3. Organização</Label>
+                    <Select id="organization">
+                      <SelectTrigger className="bg-input">
+                        <SelectValue placeholder="Selecione sua organização" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="solude">Solude</SelectItem>
+                        <SelectItem value="h-sao-marcos">Hosp. São Marcos</SelectItem>
+                        <SelectItem value="hu-ufpi">Hosp. Univ. UFPI</SelectItem>
+                      </SelectContent>
+                    </Select>
                 </div>
                 <div className="space-y-2">
-                    <Label htmlFor="confirmPassword">Confirme a Senha</Label>
+                    <Label htmlFor="access-code">4. Codigo da Organização</Label>
+                    <Input id="access-code" type="password" placeholder="••••••••" className="bg-input" />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="Password">5. Senha</Label>
+                    <Input id="confirmPassword" type="password" placeholder="••••••••" className="bg-input" />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="confirmPassword">6. Confirme a Senha</Label>
                     <Input id="confirmPassword" type="password" placeholder="••••••••" className="bg-input" />
                 </div>
                 <Button type="submit" className="w-full">

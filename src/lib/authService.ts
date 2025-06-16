@@ -20,6 +20,8 @@ export const login = async (email: string, password?: string): Promise<LoginResp
     body: JSON.stringify({ email, password }),
   });
 
+  console.log("Login response:", response);
+
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({ message: "Falha ao fazer login. Verifique suas credenciais." }));
     throw new Error(errorData.message || `Error ${response.status}: ${response.statusText}`);
@@ -36,14 +38,14 @@ export const login = async (email: string, password?: string): Promise<LoginResp
 };
 
 export const loginGuest = async (): Promise<LoginResponse> => {
+
+  console.log(`${API_BASE_URL}/login-guest`)
+
   const response = await fetch(`${API_BASE_URL}/login-guest`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    // Guest login might not need a body, or might send IP implicitly.
-    // API docs specify no parameters for guest login in body.
   });
+
+  console.log("Login guest response:", response);
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({ message: "Falha ao fazer login como convidado." }));

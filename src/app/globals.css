@@ -16,7 +16,7 @@
     --secondary-foreground: 223 29% 18%; /* Dark text on secondary */
     --muted: 220 15% 90%; /* Lighter gray for muted elements */
     --muted-foreground: 223 20% 40%; /* Darker muted text */
-    --accent: 181 100% 74%; /* Electric Blue #7df9ff */
+    --accent: 219 100% 88%; /* Electric Blue #7df9ff */
     --accent-foreground: 223 29% 12%; /* Dark text on accent */
     --destructive: 0 72% 51%; /* Default destructive red */
     --destructive-foreground: 0 0% 98%;
@@ -36,7 +36,7 @@
     --sidebar-foreground: 223 29% 25%; /* Darker text for sidebar */
     --sidebar-primary: 219 100% 61%; /* Deep Blue */
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 181 100% 74%; /* Electric Blue */
+    --sidebar-accent: 220 100% 88%; /* Electric Blue */
     --sidebar-accent-foreground: 223 29% 12%;
     --sidebar-border: 0 0% 90%; /* Light border for sidebar */
     --sidebar-ring: 219 100% 61%;

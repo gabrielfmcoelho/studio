@@ -42,8 +42,9 @@ export const useAuth = (): AuthState => {
 
   const login = useCallback(async (email: string, password?: string) => {
     setIsLoading(true);
-    try {
+    try { 
       const tokens: LoginResponse = await apiLogin(email, password);
+      console.log(tokens)
       if (tokens.accessToken) {
         const userDetails = await fetchUserDetails(tokens.accessToken, email);
         storeCurrentUserDetails(userDetails);
@@ -70,7 +71,11 @@ export const useAuth = (): AuthState => {
   const guestLogin = useCallback(async () => {
     setIsLoading(true);
     try {
+      console.log("Invocando função de login")
       const tokens: LoginResponse = await apiGuestLogin();
+
+      console.log(tokens)
+
       if (tokens.accessToken) {
         // For guests, user details might be generic or not fetched separately
         // authService.loginGuest already stores a generic guest user.
