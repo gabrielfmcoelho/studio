@@ -1,4 +1,3 @@
-
 import type { User } from './authService'; // Keep if User type is still used by MOCK_TEAM_MEMBERS
 import type { ApiUser } from '@/types/api';
 import { Briefcase, Lightbulb, BarChart3, CheckCircle, Users, Zap, ShieldCheck, Settings2 } from 'lucide-react';
@@ -17,8 +16,7 @@ export const NAV_LINKS = {
   authenticated: [
     { href: "/hub", label: "Hub de Soluções", icon: "LayoutDashboard" },
     { href: "/account", label: "Minha Conta", icon: "UserCircle" },
-    // Admin link should be conditional based on user role
-    // { href: "/admin", label: "Painel Admin", icon: "ShieldCheck" }, 
+    { href: "/admin", label: "Painel Admin", icon: "ShieldCheck" }, // Only show if user.role_id === 1
   ],
 };
 

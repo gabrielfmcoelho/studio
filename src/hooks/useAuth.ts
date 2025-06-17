@@ -1,19 +1,14 @@
-
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { 
   isAuthenticated as checkAuth, 
   getCurrentUser as getStoredUser, 
-  User as ApiUserType, // Renamed to avoid conflict if User is defined locally
+  User as ApiUserType,
   login as apiLogin, 
   loginGuest as apiGuestLogin,
   logout as apiLogout,
-  fetchUserDetails,
-  storeCurrentUserDetails
 } from '@/lib/authService';
-import type { LoginResponse } from '@/types/api';
 
-// Use ApiUserType as the type for user state
 export type User = ApiUserType;
 
 interface AuthState {
@@ -32,34 +27,38 @@ export const useAuth = (): AuthState => {
   const router = useRouter();
 
   useEffect(() => {
+    // On initial load, check the stored auth state
     const authStatus = checkAuth();
-    setIsAuthenticated(authStatus);
     if (authStatus) {
       setUser(getStoredUser());
     }
+    setIsAuthenticated(authStatus);
     setIsLoading(false);
   }, []);
 
   const login = useCallback(async (email: string, password?: string) => {
     setIsLoading(true);
     try { 
-      const tokens: LoginResponse = await apiLogin(email, password);
-      console.log(tokens)
-      if (tokens.accessToken) {
-        const userDetails = await fetchUserDetails(tokens.accessToken, email);
-        storeCurrentUserDetails(userDetails);
-        setUser(userDetails);
-        setIsAuthenticated(true);
-        // Check user role for admin redirect
-        if (userDetails.role_id === 1) { // Assuming role_id 1 is admin
-            router.push('/admin');
-        } else {
-            router.push('/hub');
-        }
+      // 1. Call the login service. It handles everything internally.
+      await apiLogin(email, password);
+      
+      // 2. After success, get the now-current user from the service.
+      const currentUser = getStoredUser();
+      
+      console.log("currentUser", currentUser);
+
+      // 3. Update the hook's state.
+      setUser(currentUser);
+      setIsAuthenticated(true);
+      
+      // 4. Redirect based on role.
+      if (currentUser?.role_id === 1) { // Assuming role_id 1 is admin
+          router.push('/admin');
       } else {
-        throw new Error("Login falhou, tokens não recebidos.");
+          router.push('/hub');
       }
     } catch (error) {
+      console.error("Login failed:", error);
       setIsAuthenticated(false);
       setUser(null);
       throw error; 
@@ -71,22 +70,20 @@ export const useAuth = (): AuthState => {
   const guestLogin = useCallback(async () => {
     setIsLoading(true);
     try {
-      console.log("Invocando função de login")
-      const tokens: LoginResponse = await apiGuestLogin();
+      // 1. Call the guest login service. It handles tokens and user storage internally.
+      await apiGuestLogin();
+      
+      // 2. After success, get the generic guest user that the service stored.
+      const guestUserDetails = getStoredUser();
 
-      console.log(tokens)
+      // 3. Update the hook's state.
+      setUser(guestUserDetails);
+      setIsAuthenticated(true);
 
-      if (tokens.accessToken) {
-        // For guests, user details might be generic or not fetched separately
-        // authService.loginGuest already stores a generic guest user.
-        const guestUserDetails = getStoredUser(); // Retrieve the generic guest user
-        setUser(guestUserDetails);
-        setIsAuthenticated(true);
-        router.push('/hub');
-      } else {
-        throw new Error("Login como convidado falhou, tokens não recebidos.");
-      }
+      // 4. Redirect to the main hub.
+      router.push('/hub');
     } catch (error) {
+      console.error("Guest login failed:", error);
       setIsAuthenticated(false);
       setUser(null);
       throw error;
@@ -95,13 +92,11 @@ export const useAuth = (): AuthState => {
     }
   }, [router]);
 
-
   const logout = useCallback(() => {
     apiLogout();
     setUser(null);
     setIsAuthenticated(false);
     router.push('/login');
-    router.refresh();
   }, [router]);
 
   return { isAuthenticated, user, isLoading, login, guestLogin, logout };
